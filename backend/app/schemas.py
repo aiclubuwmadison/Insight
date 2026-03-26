@@ -1,0 +1,1 @@
+# Defines the request and response data structures using Pydantic to ensure consistent and validated API communication
