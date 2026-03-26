@@ -1,0 +1,1 @@
+# Handles all interaction with the Gemini API, including sending prompts, receiving responses, and returning a clean explanation string 

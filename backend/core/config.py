@@ -1,0 +1,1 @@
+# Loads and manages environment variables and configuration (e.g., API keys, model names) used across the backend

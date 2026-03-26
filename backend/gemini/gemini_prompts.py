@@ -1,0 +1,1 @@
+# Stores and constructs prompt templates used for code analysis, allowing easy iteration on prompt quality without changing API logic
