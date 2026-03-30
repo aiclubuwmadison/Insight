@@ -4,27 +4,17 @@ from copy import deepcopy
 
 env_config = dotenv_values(".env")
 
-try:
-    with open(env_config["PROMPT_JSON"],'r') as prompt_file:
-        prompt = load(prompt_file)
-        content = prompt["CONTENT"]
-        content_args = prompt["CONTENT_ARGS"]
-        configs = prompt["CONFIGS"]
-except Exception as e:
-    raise RuntimeError(f"ERROR: Encountered {e} while loading prompt parameters")
+with open(env_config["PROMPT_JSON"],'r') as prompt_file:
+    prompt_template = load(prompt_file)
+
 
 class Prompt:
-    def __init__(self, request):
-        global content
-        global content_args
-        global configs
+    def __init__(self,request):
+        global prompt_template
 
-        prompt_content = deepcopy(content)
+        self.contents = deepcopy(prompt_template["contents"])
+        self.contents = self.contents.format(language=request["language"],code=request["code"])
+        self.config = deepcopy(prompt_template["config"])
         
-        for arg in content_args:
-            if not request.get(arg, None):
-                raise RuntimeError(f"ERROR: client request did not specify parameter \"{arg}\"")
-            prompt_content[arg] = request[arg]
 
-        self.content = prompt_content
-        self.configs = configs
+       
