@@ -1,16 +1,19 @@
 # Handles all interaction with the Gemini API, including sending prompts, receiving responses, and returning a clean explanation string 
-from google import Client
+from google.genai import Client
 from dotenv import dotenv_values
 from gemini_prompts import Prompt
 import re
 
 
-config = dotenv_values(".env")
-api_key = config["GEMINI_API_KEY"]
-model = config["MODEL_ID"]
+config = dotenv_values()
 
 try:
-    client = Client(api_key)
+    api_key = config["GEMINI_API_KEY"]
+except KeyError as k:
+    raise RuntimeError(f"ERROR: encountered {k} trying to access environment variables")
+
+try:
+    client = Client(api_key=api_key)
 except Exception as e:
     raise RuntimeError(f"ERROR: encountered {e} trying to initialize Gemini Client")
 
@@ -107,18 +110,19 @@ def gemini_response(query: dict) -> str:
     """
     # Specified client and model of module
     global client
-    global model
     
+    if(not query.get("language","") or not query.get("code","")):
+        raise RuntimeError("ERROR: Invalid Request")
+
     # Attempt to call Gemini with given prompt
     try: 
         # Parse query into a valid prompt
         prompt = Prompt(query)       
-        model_response = client.model.generate_content(
-            model = model,
-            contents = prompt.contents,
-            config = prompt.config
-        )
-
+        model_response = client.models.generate_content(
+            model="gemini-2.5-flash-lite",
+            contents=prompt.contents,
+            config=prompt.config
+            )
         response = parse_gemini_response(model_response.text)
     # Error-handling
     except Exception as e:
