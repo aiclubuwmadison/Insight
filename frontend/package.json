@@ -1,0 +1,40 @@
+{
+    "name": "insight",
+    "displayName": "Insight",
+    "description": "Analyze pasted code with Gemini",
+    "version": "0.0.1",
+    "publisher": "sam",
+    "engines": {
+      "vscode": "^1.85.0"
+    },
+    "categories": ["Other"],
+    "activationEvents": [
+      "onCommand:insight.analyzeSelection"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+      "commands": [
+        {
+          "command": "insight.analyzeSelection",
+          "title": "Insight: Analyze Current Selection"
+        }
+      ],
+      "menus": {
+        "editor/context": [
+          {
+            "command": "insight.analyzeSelection",
+            "group": "navigation"
+          }
+        ]
+      }
+    },
+    "scripts": {
+      "compile": "tsc -p ./",
+      "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+      "@types/node": "^20.0.0",
+      "@types/vscode": "^1.85.0",
+      "typescript": "^5.0.0"
+    }
+  }
