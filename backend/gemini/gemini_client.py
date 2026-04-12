@@ -1,138 +1,63 @@
-# Handles all interaction with the Gemini API, including sending prompts, receiving responses, and returning a clean explanation string 
-from google.genai import Client
-from dotenv import dotenv_values
-from gemini_prompts import Prompt
+from google import genai
+from app.core.config import GEMINI_API_KEY, GEMINI_MODEL
+from app.gemini.gemini_prompts import build_prompt
 import re
 
 
-config = dotenv_values()
+client = genai.Client(api_key=GEMINI_API_KEY)
 
-try:
-    api_key = config["GEMINI_API_KEY"]
-except KeyError as k:
-    raise RuntimeError(f"ERROR: encountered {k} trying to access environment variables")
 
-try:
-    client = Client(api_key=api_key)
-except Exception as e:
-    raise RuntimeError(f"ERROR: encountered {e} trying to initialize Gemini Client")
-
-def close_client():
+def get_gemini_explanation(code: str, language: str, source: str) -> str:
     """
-    Closes connection with Client
-
-    Returns:
-        Boolean: sucess in clossing client
-
+    Generate an explanation for the given code using Gemini.
     """
-    # Client used by module
-    global client
+    if not code or not code.strip():
+        raise RuntimeError("Invalid request: code is empty")
 
-    # Close a non empty client
-    if(client != None):
-        client.close()
-        client = None
+    if not language or not language.strip():
+        raise RuntimeError("Invalid request: language is empty")
 
-    return client == None
-    
-def parse_gemini_response(response_text):
-    """
-    Parse and clean Gemini response to extract just the explanation text.
-    
-    Args:
-        response_text (str): Raw response from Gemini
-        
-    Returns:
-        str: Cleaned explanation text
-        
-    Raises:
-        ValueError: If response is empty, invalid, or contains error indicators
-    """
-    
-    # Check for empty or None response
-    if not response_text or not isinstance(response_text, str):
-        raise ValueError("Gemini returned empty or invalid response")
-    
-    # Check for common error indicators
-    error_indicators = [
-        "error", "unavailable", "rate limit", "quota exceeded",
-        "invalid request", "internal error", "can't", "cannot"
-    ]
-    
-    response_lower = response_text.lower()
-    for error in error_indicators:
-        if error in response_lower and len(response_text) < 100:  # Short error messages
-            raise ValueError(f"Gemini error response: {response_text[:200]}")
-    
-    # Remove markdown code blocks
-    cleaned = re.sub(r"```.*?```", "", response_text, flags=re.DOTALL)
-    
-    # Remove inline code formatting
-    cleaned = re.sub(r"`([^`]+)`", r"\1", cleaned)
-    
-    # Remove markdown formatting (bold, italic, headers)
-    cleaned = re.sub(r"\*\*\*(.*?)\*\*\*", r"\1", cleaned)  # bold italic
-    cleaned = re.sub(r"\*\*(.*?)\*\*", r"\1", cleaned)      # bold
-    cleaned = re.sub(r"\*(.*?)\*", r"\1", cleaned)          # italic
-    cleaned = re.sub(r"__(.*?)__", r"\1", cleaned)          # bold alternate
-    cleaned = re.sub(r"_(.*?)_", r"\1", cleaned)            # italic alternate
-    cleaned = re.sub(r"^#{1,6}\s+", "", cleaned, flags=re.MULTILINE)  # headers
-    
-    # Remove HTML tags if any
-    cleaned = re.sub(r"<[^>]+>", "", cleaned)
-    
-    # Remove excessive whitespace and newlines
-    cleaned = re.sub(r"\n\s*\n", "\n\n", cleaned)  # Collapse multiple newlines
-    cleaned = re.sub(r"[ \t]+", " ", cleaned)      # Collapse spaces
-    cleaned = cleaned.strip()
-    
-    # Remove any leftover special characters or artifacts
-    cleaned = re.sub(r"[ \t]+$", "", cleaned, flags=re.MULTILINE)
-    
-    # Validate we still have content
-    if not cleaned or len(cleaned) < 10:
-        raise ValueError(f"Parsing produced empty or insufficient content: {cleaned[:100]}")
-    
+    prompt = build_prompt(code=code, language=language)
+
+    try:
+        response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=prompt
+        )
+    except Exception as e:
+        raise RuntimeError(f"Gemini request failed: {e}")
+
+    if not response or not getattr(response, "text", None):
+        raise RuntimeError("Gemini returned an empty response")
+
+    cleaned = clean_response(response.text)
+
+    if not cleaned:
+        raise RuntimeError("Gemini returned no usable explanation")
+
     return cleaned
 
-def gemini_response(query: dict) -> str:
+
+def clean_response(raw: str) -> str:
     """
-    Parse and clean Gemini response to extract just the explanation text.
-    
-    Args:
-        query (dict): Raw response from Gemini
-        
-    Returns:
-        str: Gemini's response
-        
-    Raises:
-        RuntimeError: If a valid response could not be produced
+    Clean Gemini output while preserving the actual explanation text.
     """
-    # Specified client and model of module
-    global client
-    
-    if(not query.get("language","") or not query.get("code","")):
-        raise RuntimeError("ERROR: Invalid Request")
+    if not raw or not isinstance(raw, str):
+        raise ValueError("Gemini returned empty or invalid text")
 
-    # Attempt to call Gemini with given prompt
-    try: 
-        # Parse query into a valid prompt
-        prompt = Prompt(query)       
-        model_response = client.models.generate_content(
-            model="gemini-2.5-flash-lite",
-            contents=prompt.contents,
-            config=prompt.config
-            )
-        response = parse_gemini_response(model_response.text)
-    # Error-handling
-    except Exception as e:
-        raise RuntimeError(f"An error occurred: {e}")
+    cleaned = raw
 
-    # Succesful response    
-    return response
-    
-    
+    # Remove code fence markers but keep enclosed text
+    cleaned = re.sub(r"```[\w+-]*\n?", "", cleaned)
+    cleaned = re.sub(r"```", "", cleaned)
 
+    # Remove inline backticks
+    cleaned = re.sub(r"`([^`]+)`", r"\1", cleaned)
 
+    # Collapse excessive blank lines
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
 
+    # Trim trailing spaces on each line
+    cleaned = re.sub(r"[ \t]+$", "", cleaned, flags=re.MULTILINE)
 
+    return cleaned.strip()

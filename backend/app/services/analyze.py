@@ -1,10 +1,9 @@
-from gemini.gemini_client import get_gemini_explanation
+from app.gemini.gemini_client import get_gemini_explanation
 
 
 def normalize_code(code: str, language: str) -> dict:
     """Clean and prepare code for analysis."""
-    normalized = code.strip()  # trim leading/trailing whitespace
-    # preserve internal indentation — do NOT strip lines individually
+    normalized = code.strip()
     return {
         "code": normalized,
         "language": language or "unknown",
@@ -27,12 +26,12 @@ async def run_analysis(code: str, language: str, source: str) -> str:
         explanation = get_gemini_explanation(
             code=normalized["code"],
             language=normalized["language"],
-            source=source
+            source=source,
         )
     except RuntimeError as e:
         raise RuntimeError(f"Analysis failed: {e}")
 
-    if not explanation:
+    if not explanation or not explanation.strip():
         raise RuntimeError("Gemini returned an empty explanation")
 
     return explanation

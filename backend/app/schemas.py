@@ -1,1 +1,14 @@
-# Defines the request and response data structures using Pydantic to ensure consistent and validated API communication
+from pydantic import BaseModel
+from typing import Optional
+
+
+class AnalyzeRequest(BaseModel):
+    code: str
+    language: str
+    source: Optional[str] = "vscode"
+
+
+class AnalyzeResponse(BaseModel):
+    success: bool
+    explanation: Optional[str] = None
+    error: Optional[str] = None
