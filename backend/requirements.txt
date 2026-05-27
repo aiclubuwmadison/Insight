@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-dotenv
+google-genai
+tree-sitter==0.20.1
+
+tree-sitter-languages==1.10.2
+
+scikit-learn
+
+pandas
+
+numpy
+
+joblib

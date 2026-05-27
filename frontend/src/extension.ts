@@ -13,11 +13,12 @@ type AnalyzeErrorResponse = {
   status: string;
 };
 
-const AUTO_ANALYZE_MIN_CHARS = 60;
-const AUTO_ANALYZE_DEBOUNCE_MS = 800;
+const AUTO_ANALYZE_MIN_CHARS = 100;
+const AUTO_ANALYZE_DEBOUNCE_MS = 400;
 
 let autoAnalyzeTimer: NodeJS.Timeout | undefined;
 let activeDecorationType: vscode.TextEditorDecorationType | undefined;
+let insightPanel: vscode.WebviewPanel | undefined;
 
 export function activate(context: vscode.ExtensionContext) {
   const analyzeSelectionCommand = vscode.commands.registerCommand(
@@ -69,7 +70,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const looksLikePaste =
       insertedText.length >= AUTO_ANALYZE_MIN_CHARS &&
-      (insertedText.includes("\n") || insertedText.includes("    ") || insertedText.includes("\t"));
+      insertedText.includes("\n");
 
     if (!looksLikePaste) {
       return;
@@ -107,7 +108,98 @@ async function analyzeAndShow(
   source: string,
   range?: vscode.Range
 ) {
-  const panel = vscode.window.createWebviewPanel(
+  const panel = getOrCreatePanel();
+
+  panel.webview.html = getLoadingHtml(language, source);
+  panel.reveal(vscode.ViewColumn.Beside, true);
+
+  const showProgressNotification = source === "manual";
+
+  const runRequest = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          code,
+          language,
+          source,
+        }),
+      });
+
+      const data = (await response.json()) as AnalyzeSuccessResponse | AnalyzeErrorResponse;
+
+      if (!response.ok) {
+        const message =
+          "error" in data ? data.error : `Request failed with status ${response.status}`;
+
+        panel.webview.html = getErrorHtml(message);
+        vscode.window.showErrorMessage(message);
+        return;
+      }
+
+      if (!("explanation" in data)) {
+        const message = "Backend returned an invalid response.";
+        panel.webview.html = getErrorHtml(message);
+        vscode.window.showErrorMessage(message);
+        return;
+      }
+
+      panel.webview.html = getWebviewHtml(
+        code,
+        language,
+        data.explanation,
+        data.time_complexity ?? "Unknown",
+        data.space_complexity ?? "Unknown",
+        source
+      );
+
+      if (range) {
+        applyInlineAnnotations(
+          editor,
+          range,
+          data.explanation,
+          data.time_complexity ?? "Unknown",
+          data.space_complexity ?? "Unknown"
+        );
+      }
+
+      if (source === "manual") {
+        vscode.window.showInformationMessage("Insight analysis complete.");
+      }
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Unknown error contacting backend.";
+
+      panel.webview.html = getErrorHtml(`Insight request failed: ${message}`);
+      vscode.window.showErrorMessage(`Insight request failed: ${message}`);
+    }
+  };
+
+  if (showProgressNotification) {
+    await vscode.window.withProgress(
+      {
+        location: vscode.ProgressLocation.Notification,
+        title: "Insight is analyzing code...",
+        cancellable: false,
+      },
+      async () => {
+        await runRequest();
+      }
+    );
+  } else {
+    await runRequest();
+  }
+}
+
+function getOrCreatePanel(): vscode.WebviewPanel {
+  if (insightPanel) {
+    return insightPanel;
+  }
+
+  insightPanel = vscode.window.createWebviewPanel(
     "insightAnalysis",
     "Insight Analysis",
     vscode.ViewColumn.Beside,
@@ -117,80 +209,11 @@ async function analyzeAndShow(
     }
   );
 
-  panel.webview.html = getLoadingHtml(language, source);
+  insightPanel.onDidDispose(() => {
+    insightPanel = undefined;
+  });
 
-  await vscode.window.withProgress(
-    {
-      location: vscode.ProgressLocation.Notification,
-      title:
-        source === "auto"
-          ? "Insight auto-analyzing pasted code..."
-          : "Insight is analyzing code...",
-      cancellable: false,
-    },
-    async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:8000/analyze", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            code,
-            language,
-            source,
-          }),
-        });
-
-        const data = (await response.json()) as AnalyzeSuccessResponse | AnalyzeErrorResponse;
-
-        if (!response.ok) {
-          const message =
-            "error" in data ? data.error : `Request failed with status ${response.status}`;
-
-          panel.webview.html = getErrorHtml(message);
-          vscode.window.showErrorMessage(message);
-          return;
-        }
-
-        if (!("explanation" in data)) {
-          const message = "Backend returned an invalid response.";
-          panel.webview.html = getErrorHtml(message);
-          vscode.window.showErrorMessage(message);
-          return;
-        }
-
-        panel.webview.html = getWebviewHtml(
-          code,
-          language,
-          data.explanation,
-          data.time_complexity ?? "Unknown",
-          data.space_complexity ?? "Unknown",
-          source
-        );
-
-        if (range) {
-          applyInlineAnnotations(
-            editor,
-            range,
-            data.explanation,
-            data.time_complexity ?? "Unknown",
-            data.space_complexity ?? "Unknown"
-          );
-        }
-
-        if (source === "manual") {
-          vscode.window.showInformationMessage("Insight analysis complete.");
-        }
-      } catch (error) {
-        const message =
-          error instanceof Error ? error.message : "Unknown error contacting backend.";
-
-        panel.webview.html = getErrorHtml(`Insight request failed: ${message}`);
-        vscode.window.showErrorMessage(`Insight request failed: ${message}`);
-      }
-    }
-  );
+  return insightPanel;
 }
 
 function applyInlineAnnotations(
@@ -466,7 +489,7 @@ function getLoadingHtml(language: string, source: string): string {
   <style>${getBaseStyles()}</style>
 </head>
 <body>
-  <h1>Insight Analysis</h1>
+  <h1>🧠 Insight Analysis</h1>
   ${getSourceBadgeHtml(source)}
 
   <div class="card">
@@ -494,7 +517,7 @@ function getErrorHtml(message: string): string {
   <style>${getBaseStyles()}</style>
 </head>
 <body>
-  <h1>Insight Analysis</h1>
+  <h1>🧠 Insight Analysis</h1>
 
   <div class="card">
     <div class="label">Status</div>
@@ -521,7 +544,7 @@ function getWebviewHtml(
   <style>${getBaseStyles()}</style>
 </head>
 <body>
-  <h1>Insight Analysis</h1>
+  <h1>🧠 Insight Analysis</h1>
   ${getSourceBadgeHtml(source)}
 
   <div class="card">
@@ -540,7 +563,7 @@ function getWebviewHtml(
   </div>
 
   <div class="card">
-    <div class="label">AI Explanation</div>
+    <div class="label">💡 AI Explanation</div>
     ${formatExplanation(explanation)}
     <p class="footer-note">Generated by AI • Results may vary</p>
   </div>
@@ -559,5 +582,10 @@ function getWebviewHtml(
 export function deactivate() {
   if (activeDecorationType) {
     activeDecorationType.dispose();
+  }
+
+  if (insightPanel) {
+    insightPanel.dispose();
+    insightPanel = undefined;
   }
 }
