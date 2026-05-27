@@ -2,7 +2,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from app.schemas import AnalyzeRequest, AnalyzeResponse, ErrorResponse
 from app.services.analyze import run_analysis
 
@@ -23,10 +24,23 @@ def root():
 
 
 @app.exception_handler(RequestValidationError)
-async def validation_exception_handler(request: Request, exc: RequestValidationError):
+async def validation_exception_handler(request, exc):
+    clean_errors = []
+
+    for error in exc.errors():
+        clean_error = error.copy()
+
+        if "ctx" in clean_error:
+            clean_error["ctx"] = {
+                key: str(value)
+                for key, value in clean_error["ctx"].items()
+            }
+
+        clean_errors.append(clean_error)
+
     return JSONResponse(
         status_code=422,
-        content={"error": exc.errors(), "status": "error"}
+        content={"detail": clean_errors},
     )
 
 
@@ -43,6 +57,11 @@ async def analyze(request: AnalyzeRequest):
             explanation=result["explanation"],
             time_complexity=result.get("time_complexity"),
             space_complexity=result.get("space_complexity"),
+            model=result.get("model", "gemini"),
+            algorithm=result.get("algorithm"),
+            confidence=result.get("confidence"),
+            gemini_used=result.get("gemini_used", True),
+            analysis_source=result.get("analysis_source", "gemini"),
             status="success"
         )
 

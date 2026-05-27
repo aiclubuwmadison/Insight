@@ -15,8 +15,11 @@ class AnalyzeRequest(BaseModel):
 
     @validator("source")
     def source_must_be_valid(cls, v):
-        if v not in ("paste", "manual", "unknown", "auto"):
-            raise ValueError("source must be 'paste', 'manual', 'auto', or 'unknown'")
+        allowed_sources = ("paste", "manual", "unknown", "auto", "selection")
+        if v not in allowed_sources:
+            raise ValueError(
+                "source must be 'paste', 'manual', 'auto', 'selection', or 'unknown'"
+            )
         return v
 
 
@@ -25,6 +28,10 @@ class AnalyzeResponse(BaseModel):
     time_complexity: Optional[str] = None
     space_complexity: Optional[str] = None
     model: str = "gemini"
+    algorithm: Optional[str] = None
+    confidence: Optional[float] = None
+    gemini_used: bool = True
+    analysis_source: str = "gemini"
     status: str = "success"
 
 
