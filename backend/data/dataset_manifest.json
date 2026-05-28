@@ -1,0 +1,15 @@
+{
+  "total": 1000,
+  "counts": {
+    "binary_search": 100,
+    "bfs": 100,
+    "dfs": 100,
+    "dynamic_programming": 100,
+    "hash_map": 100,
+    "sliding_window": 100,
+    "sorting": 100,
+    "stack": 100,
+    "two_pointers": 100,
+    "unknown": 100
+  }
+}

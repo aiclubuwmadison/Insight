@@ -1,0 +1,249 @@
+{
+  "total_examples": 1000,
+  "label_counts": {
+    "bfs": 100,
+    "binary_search": 100,
+    "dfs": 100,
+    "dynamic_programming": 100,
+    "hash_map": 100,
+    "sliding_window": 100,
+    "sorting": 100,
+    "stack": 100,
+    "two_pointers": 100,
+    "unknown": 100
+  },
+  "feature_columns": [
+    "total_nodes",
+    "unique_node_types",
+    "max_depth",
+    "avg_branching_factor",
+    "loop_count",
+    "conditional_count",
+    "function_count",
+    "call_count",
+    "return_count",
+    "assignment_count",
+    "binary_expression_count",
+    "collection_count",
+    "identifier_count",
+    "literal_count",
+    "comment_count",
+    "nested_loop_count",
+    "max_loop_depth",
+    "has_function",
+    "has_loop",
+    "has_conditional",
+    "has_collection",
+    "has_recursion_signal"
+  ],
+  "held_out_accuracy": 1.0,
+  "classification_report": {
+    "bfs": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "binary_search": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "dfs": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "dynamic_programming": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "hash_map": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "sliding_window": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "sorting": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "stack": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "two_pointers": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "unknown": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 200.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 200.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      20,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      20,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      20,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      20,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      20,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      20,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      20,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      20,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      20,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      20
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "bfs",
+    "binary_search",
+    "dfs",
+    "dynamic_programming",
+    "hash_map",
+    "sliding_window",
+    "sorting",
+    "stack",
+    "two_pointers",
+    "unknown"
+  ]
+}
