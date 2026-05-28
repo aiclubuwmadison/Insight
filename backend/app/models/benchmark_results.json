@@ -1,0 +1,1007 @@
+{
+  "summary": {
+    "total_examples": 100,
+    "local_classifier": {
+      "latency": {
+        "count": 100,
+        "min_ms": 12.664,
+        "median_ms": 13.203,
+        "mean_ms": 23.04,
+        "p90_ms": 13.547,
+        "max_ms": 995.973
+      },
+      "skip_count": 90,
+      "fallback_count": 10,
+      "skip_rate": 0.9,
+      "accuracy_against_folder_labels": 1.0,
+      "known_algorithm_skip_rate": 1.0
+    },
+    "gemini_direct": {
+      "latency": {
+        "count": 10,
+        "min_ms": 933.531,
+        "median_ms": 1330.896,
+        "mean_ms": 1757.344,
+        "p90_ms": 2247.689,
+        "max_ms": 5260.93
+      },
+      "attempted_calls": 10,
+      "successful_calls": 10
+    },
+    "estimated_median_latency_reduction_vs_gemini": 0.9901
+  },
+  "local_results": [
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 995.973,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_000.py"
+    },
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.779,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_001.py"
+    },
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.565,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_002.py"
+    },
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.43,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_003.py"
+    },
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.089,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_004.py"
+    },
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.434,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_005.py"
+    },
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.275,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_006.py"
+    },
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.132,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_007.py"
+    },
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.273,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_008.py"
+    },
+    {
+      "expected_label": "bfs",
+      "predicted_label": "bfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.146,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_009.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.908,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_000.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.446,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_001.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.288,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_002.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.497,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_003.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.021,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_004.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.478,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_005.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.26,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_006.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.056,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_007.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.244,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_008.py"
+    },
+    {
+      "expected_label": "binary_search",
+      "predicted_label": "binary_search",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.971,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/binary_search/binary_search_009.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.983,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_000.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.218,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_001.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.547,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_002.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.355,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_003.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.076,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_004.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.853,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_005.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.972,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_006.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.128,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_007.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.319,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_008.py"
+    },
+    {
+      "expected_label": "dfs",
+      "predicted_label": "dfs",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.022,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dfs/dfs_009.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.367,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_000.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.824,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_001.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.551,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_002.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.484,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_003.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.455,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_004.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.36,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_005.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.906,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_006.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.408,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_007.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.998,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_008.py"
+    },
+    {
+      "expected_label": "dynamic_programming",
+      "predicted_label": "dynamic_programming",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.167,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/dynamic_programming/dynamic_programming_009.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.195,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_000.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.044,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_001.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.354,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_002.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.022,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_003.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.642,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_004.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.988,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_005.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.134,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_006.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.461,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_007.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.666,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_008.py"
+    },
+    {
+      "expected_label": "hash_map",
+      "predicted_label": "hash_map",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.446,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/hash_map/hash_map_009.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.8,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_000.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.389,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_001.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.329,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_002.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.085,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_003.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.622,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_004.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.231,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_005.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.333,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_006.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.483,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_007.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.077,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_008.py"
+    },
+    {
+      "expected_label": "sliding_window",
+      "predicted_label": "sliding_window",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.697,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sliding_window/sliding_window_009.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.687,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_000.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.882,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_001.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.131,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_002.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.515,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_003.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.476,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_004.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.703,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_005.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.018,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_006.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.259,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_007.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.973,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_008.py"
+    },
+    {
+      "expected_label": "sorting",
+      "predicted_label": "sorting",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.049,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/sorting/sorting_009.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.118,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_000.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.266,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_001.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.54,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_002.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.134,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_003.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.189,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_004.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.457,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_005.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.301,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_006.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.24,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_007.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.922,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_008.py"
+    },
+    {
+      "expected_label": "stack",
+      "predicted_label": "stack",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.123,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/stack/stack_009.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.115,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_000.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.146,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_001.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.275,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_002.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.95,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_003.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.82,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_004.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.131,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_005.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 12.992,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_006.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.624,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_007.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.02,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_008.py"
+    },
+    {
+      "expected_label": "two_pointers",
+      "predicted_label": "two_pointers",
+      "confidence": 1.0,
+      "gemini_skipped": true,
+      "correct": true,
+      "latency_ms": 13.392,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/two_pointers/two_pointers_009.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 13.211,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_000.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 12.873,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_001.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 13.341,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_002.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 12.994,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_003.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 13.026,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_004.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 13.051,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_005.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 12.664,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_006.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 12.903,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_007.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 12.987,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_008.py"
+    },
+    {
+      "expected_label": "unknown",
+      "predicted_label": null,
+      "confidence": null,
+      "gemini_skipped": false,
+      "correct": true,
+      "latency_ms": 13.254,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/unknown/unknown_009.py"
+    }
+  ],
+  "gemini_results": [
+    {
+      "expected_label": "bfs",
+      "latency_ms": 933.531,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_000.py"
+    },
+    {
+      "expected_label": "bfs",
+      "latency_ms": 1382.372,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_001.py"
+    },
+    {
+      "expected_label": "bfs",
+      "latency_ms": 1027.431,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_002.py"
+    },
+    {
+      "expected_label": "bfs",
+      "latency_ms": 1253.411,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_003.py"
+    },
+    {
+      "expected_label": "bfs",
+      "latency_ms": 1738.794,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_004.py"
+    },
+    {
+      "expected_label": "bfs",
+      "latency_ms": 2247.689,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_005.py"
+    },
+    {
+      "expected_label": "bfs",
+      "latency_ms": 1326.775,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_006.py"
+    },
+    {
+      "expected_label": "bfs",
+      "latency_ms": 1335.017,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_007.py"
+    },
+    {
+      "expected_label": "bfs",
+      "latency_ms": 1067.488,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_008.py"
+    },
+    {
+      "expected_label": "bfs",
+      "latency_ms": 5260.93,
+      "success": true,
+      "error": null,
+      "path": "/Users/samavramov/Insight/backend/data/algorithm_examples/bfs/bfs_009.py"
+    }
+  ]
+}
