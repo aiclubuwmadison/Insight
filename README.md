@@ -3,7 +3,11 @@
 Insight is a VS Code extension that explains selected code and detects common algorithmic patterns using a hybrid local-analysis and LLM pipeline.
 
 The system combines a TypeScript VS Code extension, a FastAPI backend, Tree-sitter AST parsing, a scikit-learn classifier, and Gemini fallback. For recognized algorithmic code, Insight can classify the pattern locally and skip the LLM call. For unknown or low-confidence code, it falls back to Gemini for a natural-language explanation.
+<p align="center">
 
+  <img src="screenshots/insight-example.png" alt="Insight analyzing binary search code inside VS Code" width="95%">
+
+</p>
 ## Overview
 
 Insight was built to make code comprehension faster inside VS Code. A user selects code, runs the Insight command, and receives a concise explanation, time complexity, space complexity, and metadata about whether the result came from the local classifier or Gemini.
