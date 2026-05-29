@@ -228,10 +228,10 @@ function applyInlineAnnotations(
   }
 
   activeDecorationType = vscode.window.createTextEditorDecorationType({
-    backgroundColor: "rgba(123, 97, 255, 0.10)",
+    backgroundColor: "rgba(227, 170, 107, 0.10)",
     borderRadius: "4px",
     isWholeLine: false,
-    overviewRulerColor: "rgba(123, 97, 255, 0.8)",
+    overviewRulerColor: "rgba(227, 170, 107, 0.85)",
     overviewRulerLane: vscode.OverviewRulerLane.Right,
   });
 
@@ -310,17 +310,17 @@ function formatExplanation(text: string): string {
 
 function getLanguageColor(language: string): string {
   const map: Record<string, string> = {
-    python: "linear-gradient(135deg, #3572A5, #4B8BBE)",
-    javascript: "linear-gradient(135deg, #f7df1e, #e6c200)",
-    typescript: "linear-gradient(135deg, #3178c6, #255a96)",
-    java: "linear-gradient(135deg, #b07219, #8a5a12)",
-    cpp: "linear-gradient(135deg, #00599c, #007acc)",
-    c: "linear-gradient(135deg, #555555, #777777)",
-    go: "linear-gradient(135deg, #00ADD8, #007d9c)",
-    rust: "linear-gradient(135deg, #b7410e, #8b2f08)",
+    python: "#5a9fd4",
+    javascript: "#e6c54e",
+    typescript: "#4f9cf0",
+    java: "#c7782f",
+    cpp: "#5fa8d3",
+    c: "#9aa0a8",
+    go: "#4dd0c4",
+    rust: "#d97742",
   };
 
-  return map[language.toLowerCase()] || "linear-gradient(135deg, #0e639c, #1177bb)";
+  return map[language.toLowerCase()] || "#e3aa6b";
 }
 
 function getSourceBadgeHtml(source: string): string {
@@ -337,144 +337,400 @@ function getSourceBadgeHtml(source: string): string {
 
 function getBaseStyles(): string {
   return `
+    :root {
+      --bg: #131418;
+      --bg-deep: #0e0f12;
+      --surface: #191b20;
+      --surface-2: #1f2127;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-bright: rgba(255, 255, 255, 0.13);
+      --text: #e7e4dc;
+      --text-dim: #9c9ca6;
+      --text-faint: #696a73;
+      --accent: #e3aa6b;
+      --accent-dim: #b9854f;
+      --accent-soft: rgba(227, 170, 107, 0.12);
+      --danger: #e8806e;
+      --mono: "JetBrains Mono", "SF Mono", SFMono-Regular, "Cascadia Code",
+        "Fira Code", ui-monospace, Menlo, Consolas, monospace;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+        Georgia, "Times New Roman", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      padding: 20px;
-      line-height: 1.6;
-      background: #1e1e1e;
-      color: #d4d4d4;
+      margin: 0;
+      padding: 32px 26px 44px;
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background:
+        radial-gradient(120% 80% at 50% -8%, #1c1e24 0%, rgba(28, 30, 36, 0) 62%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    .card {
-      border: 1px solid #333;
-      border-top: 1px solid #2f2f2f;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 16px;
-      background: #252526;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    .wrap {
+      max-width: 660px;
+      margin: 0 auto;
     }
 
-    .card + .card {
-      margin-top: 20px;
+    ::selection {
+      background: var(--accent-soft);
+      color: var(--text);
     }
 
-    .label {
-      font-size: 12px;
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #2a2c33;
+      border-radius: 6px;
+      border: 2px solid var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #34363e;
+    }
+
+    .masthead {
+      margin-bottom: 24px;
+      animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.34em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #888;
-      margin-bottom: 8px;
+      color: var(--accent);
+      margin: 0 0 11px;
     }
 
     h1 {
-      font-size: 22px;
-      margin-bottom: 12px;
-      color: #ffffff;
-      letter-spacing: -0.5px;
-    }
-
-    p {
-      margin-top: 0;
-      margin-bottom: 16px;
-      line-height: 1.7;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    pre {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      background: #111111;
-      color: #e6e6e6;
-      padding: 14px;
-      border-radius: 8px;
-      overflow-x: auto;
-      border: 1px solid #2d2d2d;
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 13px;
-    }
-
-    .language-pill,
-    .complexity-pill {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      color: white;
-      font-size: 12px;
+      font-family: var(--mono);
+      font-size: 25px;
       font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #f4f1ea;
+      margin: 0 0 16px;
     }
 
-    .complexity-pill {
-      background: linear-gradient(135deg, #5a3fc0, #7b61ff);
-      margin-right: 8px;
-      margin-bottom: 8px;
+    .rule {
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        var(--accent-dim),
+        rgba(185, 133, 79, 0) 72%
+      );
     }
 
-    details {
-      margin-top: 8px;
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-top: 16px;
+      background: var(--surface);
+      animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     }
 
-    summary {
-      cursor: pointer;
-      color: #4fc1ff;
-      font-weight: 600;
-      margin-bottom: 12px;
-      outline: none;
-      transition: opacity 0.2s ease;
-    }
+    .card:nth-of-type(1) { animation-delay: 0.04s; }
+    .card:nth-of-type(2) { animation-delay: 0.1s; }
+    .card:nth-of-type(3) { animation-delay: 0.16s; }
+    .card:nth-of-type(4) { animation-delay: 0.22s; }
 
-    summary:hover {
-      opacity: 0.8;
-    }
-
-    .status {
-      font-size: 14px;
-      color: #bbbbbb;
-    }
-
-    .error-text {
-      color: #ff7b72;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
-    .footer-note {
-      margin-top: 14px;
-      font-size: 12px;
-      color: #888;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .bullet-spacer {
-      height: 8px;
-    }
-
-    .source-badge-row {
+    .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-faint);
       margin-bottom: 14px;
     }
 
+    .lang {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text);
+      padding: 7px 13px 7px 11px;
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      background: var(--surface-2);
+    }
+
+    .lang-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.04);
+    }
+
+    .readout {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      column-gap: 22px;
+    }
+
+    .metric {
+      min-width: 0;
+    }
+
+    .metric-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 9px;
+    }
+
+    .metric-value {
+      font-family: var(--mono);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      word-break: break-word;
+    }
+
+    .readout-divider {
+      width: 1px;
+      height: 44px;
+      background: var(--border-bright);
+    }
+
+    .prose p {
+      margin: 0 0 14px;
+      color: var(--text);
+    }
+
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .prose li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 11px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .prose li:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 0.6em;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 1px;
+      transform: rotate(45deg);
+    }
+
+    .bullet-spacer {
+      height: 10px;
+    }
+
+    .footer-note {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.04em;
+      color: var(--text-faint);
+      margin: 18px 0 0;
+    }
+
+    pre {
+      margin: 4px 0 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #d7d4cc;
+      background: var(--bg-deep);
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    details {
+      margin-top: 2px;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      user-select: none;
+      transition: color 0.15s ease;
+      margin-bottom: 12px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::before {
+      content: "+";
+      font-size: 14px;
+      line-height: 1;
+      color: var(--accent-dim);
+    }
+
+    details[open] > summary::before {
+      content: "\u2212";
+    }
+
+    summary:hover {
+      color: #f0c88e;
+    }
+
+    summary:focus-visible {
+      outline: 1px solid var(--accent-dim);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    .status {
+      font-family: var(--serif);
+      font-size: 14.5px;
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    .scan {
+      position: relative;
+      height: 2px;
+      margin-top: 18px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .scan::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 36%;
+      border-radius: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent),
+        transparent
+      );
+      animation: sweep 1.25s ease-in-out infinite;
+    }
+
+    .error {
+      display: flex;
+      gap: 14px;
+    }
+
+    .error-bar {
+      flex: 0 0 3px;
+      background: var(--danger);
+      border-radius: 2px;
+    }
+
+    .error-text {
+      margin: 0;
+      color: #f0b6ab;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .source-badge-row {
+      margin: 16px 0 0;
+    }
+
     .source-badge {
-      display: inline-block;
-      font-size: 12px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: #2d2d2d;
-      color: #aaa;
-      border: 1px solid #3a3a3a;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface-2);
+    }
+
+    .source-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes sweep {
+      0% {
+        transform: translateX(-120%);
+      }
+      100% {
+        transform: translateX(360%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .masthead,
+      .card {
+        animation: none;
+      }
+      .scan::after {
+        animation: none;
+        width: 100%;
+        opacity: 0.5;
+      }
     }
   `;
 }
@@ -489,19 +745,28 @@ function getLoadingHtml(language: string, source: string): string {
   <style>${getBaseStyles()}</style>
 </head>
 <body>
-  <h1>🧠 Insight Analysis</h1>
-  ${getSourceBadgeHtml(source)}
+  <div class="wrap">
+    <header class="masthead">
+      <p class="eyebrow">Code Analysis</p>
+      <h1>Insight Analysis</h1>
+      <div class="rule"></div>
+    </header>
 
-  <div class="card">
-    <div class="label">Language</div>
-    <span class="language-pill" style="background: ${getLanguageColor(language)};">
-      ${escapeHtml(language)}
-    </span>
-  </div>
+    ${getSourceBadgeHtml(source)}
 
-  <div class="card">
-    <div class="label">Status</div>
-    <p class="status">Analyzing your code...</p>
+    <section class="card">
+      <div class="label">Language</div>
+      <span class="lang">
+        <span class="lang-dot" style="background: ${getLanguageColor(language)};"></span>
+        ${escapeHtml(language)}
+      </span>
+    </section>
+
+    <section class="card">
+      <div class="label">Status</div>
+      <p class="status">Reading your code and estimating complexity</p>
+      <div class="scan"></div>
+    </section>
   </div>
 </body>
 </html>`;
@@ -517,11 +782,20 @@ function getErrorHtml(message: string): string {
   <style>${getBaseStyles()}</style>
 </head>
 <body>
-  <h1>🧠 Insight Analysis</h1>
+  <div class="wrap">
+    <header class="masthead">
+      <p class="eyebrow">Code Analysis</p>
+      <h1>Insight Analysis</h1>
+      <div class="rule"></div>
+    </header>
 
-  <div class="card">
-    <div class="label">Status</div>
-    <p class="error-text">${escapeHtml(message)}</p>
+    <section class="card">
+      <div class="label">Status</div>
+      <div class="error">
+        <div class="error-bar"></div>
+        <p class="error-text">${escapeHtml(message)}</p>
+      </div>
+    </section>
   </div>
 </body>
 </html>`;
@@ -544,36 +818,51 @@ function getWebviewHtml(
   <style>${getBaseStyles()}</style>
 </head>
 <body>
-  <h1>🧠 Insight Analysis</h1>
-  ${getSourceBadgeHtml(source)}
+  <div class="wrap">
+    <header class="masthead">
+      <p class="eyebrow">Code Analysis</p>
+      <h1>Insight Analysis</h1>
+      <div class="rule"></div>
+    </header>
 
-  <div class="card">
-    <div class="label">Language</div>
-    <span class="language-pill" style="background: ${getLanguageColor(language)};">
-      ${escapeHtml(language)}
-    </span>
-  </div>
+    ${getSourceBadgeHtml(source)}
 
-  <div class="card">
-    <div class="label">Estimated Complexity</div>
-    <div class="pill-row">
-      <span class="complexity-pill">Time: ${escapeHtml(timeComplexity)}</span>
-      <span class="complexity-pill">Space: ${escapeHtml(spaceComplexity)}</span>
-    </div>
-  </div>
+    <section class="card">
+      <div class="label">Language</div>
+      <span class="lang">
+        <span class="lang-dot" style="background: ${getLanguageColor(language)};"></span>
+        ${escapeHtml(language)}
+      </span>
+    </section>
 
-  <div class="card">
-    <div class="label">💡 AI Explanation</div>
-    ${formatExplanation(explanation)}
-    <p class="footer-note">Generated by AI • Results may vary</p>
-  </div>
+    <section class="card">
+      <div class="label">Estimated Complexity</div>
+      <div class="readout">
+        <div class="metric">
+          <div class="metric-label">Time</div>
+          <div class="metric-value">${escapeHtml(timeComplexity)}</div>
+        </div>
+        <div class="readout-divider"></div>
+        <div class="metric">
+          <div class="metric-label">Space</div>
+          <div class="metric-value">${escapeHtml(spaceComplexity)}</div>
+        </div>
+      </div>
+    </section>
 
-  <div class="card">
-    <div class="label">Submitted Code</div>
-    <details>
-      <summary>Show code</summary>
-      <pre>${escapeHtml(code)}</pre>
-    </details>
+    <section class="card">
+      <div class="label">Explanation</div>
+      <div class="prose">${formatExplanation(explanation)}</div>
+      <p class="footer-note">Generated by AI &mdash; results may vary</p>
+    </section>
+
+    <section class="card">
+      <div class="label">Submitted Code</div>
+      <details>
+        <summary>Show code</summary>
+        <pre>${escapeHtml(code)}</pre>
+      </details>
+    </section>
   </div>
 </body>
 </html>`;

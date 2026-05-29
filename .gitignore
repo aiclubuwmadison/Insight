@@ -1,3 +1,29 @@
-.env
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.env
+.env.*
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+
+# Backend local secrets
+backend/.env
+
+# Node / frontend
+node_modules/
+frontend/node_modules/
+
+# VS Code extension build artifacts
+*.vsix
+
+# Optional: ignore built frontend output if you want builds to be regenerated
+# frontend/dist/
+
+# Logs
+*.log
